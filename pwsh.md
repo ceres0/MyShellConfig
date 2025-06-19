@@ -1,6 +1,6 @@
 # PowerShell个人配置
 
-> Windows系列系统习惯使用自带的PowerShell作为命令行工具，本文档记录了个人的PowerShell配置。
+> Windows 系列系统习惯使用自带的 PowerShell 作为命令行工具，本文档记录了个人的 PowerShell 配置。
 
 ## 必备软件
 
@@ -13,10 +13,85 @@ Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 ```
 
-## WindowsTerminal配置
+### Windows Terminal
+
+Win11自带，Win10可从微软商店自行安装
+
+## 配置 WindowsTerminal
+
+### 安装 NF 字体
+
+nerd-fonts 是一个开源的字体项目，提供了很多编程常用的字体。oh-my-posh 需要使用 nerd-fonts字体来显示图标，官方推荐使用`Meslo-Nerd-Fonts`，可以使用 scoop 安装：
+
+```powershell
+scoop bucket add nerd-fonts
+scoop install Meslo-NF-Mono
+```
+
+### 修改设置
+
+- 启动 -> 默认配置文件：Windows PowerShell
+- 启动 -> 默认终端应用程序：Windows 终端
+- 外观 -> 在选项卡行中使用亚克力材料：开
+- 配置文件/默认值 -> 外观：
+  - 文本 -> 字体：MesloLGM Nerd Font Mono(MesloLGN NF Mono)
+  - 透明度 -> 背景不透明度：70%左右
+  - 透明度 -> 启用亚克力材料：开
+
+## oh-my-posh
+
+### 安装 oh-my-posh
+
+可以通过三种方式进行安装：
+
+#### 1. winget 安装
+
+Windows自带的包管理工具，适合没有安装 scoop时。
+
+```powershell
+winget install JanDeDobbeleer.OhMyPosh -s winget
+```
+
+#### 2. scoop 安装
+
+```powershell
+scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+```
+
+#### 3. 微软商店安装
+
+可以直接在微软商店中搜索 oh-my-posh 进行安装。
+
+### 配置 oh-my-posh
+
+在 PowerShell 中使用 oh-my-posh 需要先加载它的模块，可以打开 PowerShell 配置文件（`$profile`）进行编辑：
+
+```powershell
+notepad $profile
+# or
+code $profile # 如果安装了 VSCode
+```
+
+添加以下内容：
+
+```powershell
+oh-my-posh init pwsh | Invoke-Expression
+```
+
+### 设置主题
+
+查看主题命令`Get-PoshThemes`疑似被弃用，可以在[官网](https://ohmyposh.dev/docs/themes)查看主题，目前选用的是`clean-detailed`主题。
+
+添加如下信息至配置文件中：
+
+```powershell
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/clean-detailed.omp.json" | Invoke-Expression
+# 模板
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/[主题名].omp.json" | Invoke-Expression
+```
 
 ## 可选
 
-### PowerShell升级
+### PowerShell 升级
 
-Windows自带版本为5.1，最新版本为7.x。Powershell 可以直接在微软商店中安装，不过商店版有一点点权限限制。所以你也可以直接从 Github 上下载 Powershell，<https://github.com/PowerShell/PowerShell/releases>
+Windows 自带版本为5.1，最新版本为7.x。Powershell 可以直接在微软商店中安装，不过商店版有一点点权限限制。所以也可以直接从 Github 上下载 Powershell，<https://github.com/PowerShell/PowerShell/releases>
