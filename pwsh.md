@@ -136,6 +136,25 @@ function lsc {
 }
 ```
 
+## Terminal-Icons
+
+Terminal-Icons 是一个用于在 Windows Terminal 中显示文件和文件夹图标的 PowerShell 模块。
+
+### 安装
+
+```powershell
+# scoop bucket add extras
+scoop install terminal-icons
+```
+
+### 配置
+
+在 PowerShell 配置文件中添加以下内容：
+
+```powershell
+Import-Module terminal-icons
+```
+
 ## 待完善
 
 ### PoshFuck
