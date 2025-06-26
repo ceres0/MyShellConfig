@@ -167,5 +167,11 @@ PowerShell的 TheFuck，可以使用`fuck`来纠正命令
 
 Windows 自带版本为5.1，最新版本为7.x。Powershell 可以直接在微软商店中安装，不过商店版有一点点权限限制。所以也可以直接从 Github 上下载 Powershell，<https://github.com/PowerShell/PowerShell/releases>
 
+也可以使用 Winget 进行安装
+
+```powershell
+winget install --id Microsoft.Powershell --source winget
+```
+
 - 包含 PowerToys 的 CommandNotFound 模块，在用户输入命令遇到错误之后，会自动执行检测和分析。
 - 引入了 PSReadLine 模块的预测性 IntelliSense 功能
